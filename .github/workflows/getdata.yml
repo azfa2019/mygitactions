@@ -23,7 +23,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
+          
+      - name: Debug Secrets
+        run: echo "USERNAME is set"
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          
       - name: Run Flexiroam script with timeout
         run: timeout 300s python Flexiroam_FreePlan.py  # Run for 5 minutes (300 seconds) then force stop
         env:
